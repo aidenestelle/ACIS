@@ -1,0 +1,78 @@
+{
+  "$schema": "Adaptive Codebase Intelligence System configuration",
+  "version": "1.2.0",
+  "thresholds": {
+    "max_file_changes_per_commit": 10,
+    "max_lines_per_file_change": 300,
+    "pattern_recognition_min_occurrences": 3,
+    "max_task_decomposition_depth": 5,
+    "context_window_reserve_tokens": 50000,
+    "memory_staleness_days": 30
+  },
+  "complexity_definitions": {
+    "trivial": "single_file_under_20_lines",
+    "simple": "single_file_any_size",
+    "moderate": "2_to_5_files",
+    "complex": "more_than_5_files_or_arch_impact"
+  },
+  "agents": {
+    "planner": {
+      "enabled": true,
+      "skip_for_complexity": ["trivial"]
+    },
+    "executor": {
+      "enabled": true,
+      "max_iterations_on_failure": 3
+    },
+    "reviewer": {
+      "enabled": true,
+      "skip_for_complexity": ["trivial"],
+      "auto_approve_threshold": "minor"
+    }
+  },
+  "preferences": {
+    "styling": "tailwind",
+    "testing_framework": "vitest",
+    "package_manager": "npm",
+    "strict_typescript": true,
+    "prefer_composition_over_inheritance": true,
+    "commit_style": "conventional"
+  },
+  "stack_hints": {
+    "frontend": {
+      "framework": "react",
+      "version": "18+",
+      "bundler": "vite",
+      "language": "typescript"
+    },
+    "backend": {
+      "provider": "supabase",
+      "features": ["auth", "database", "edge-functions", "storage"]
+    },
+    "database": {
+      "provider": "supabase",
+      "type": "postgresql"
+    },
+    "deployment": null
+  },
+  "behavior": {
+    "auto_update_memory": true,
+    "require_preflight_check": true,
+    "log_all_file_mutations": true,
+    "auto_skill_proposal": true,
+    "discover_conventions_from_code": true,
+    "enable_telemetry": true
+  },
+  "brownfield": {
+    "require_discovery_before_changes": true,
+    "auto_detect_stack": true,
+    "preserve_existing_patterns": true,
+    "migrate_when_touched_enabled": true,
+    "document_debt_on_discovery": true,
+    "max_debt_items_before_warning": 20,
+    "migration_strategy": "incremental",
+    "respect_legacy_naming": true,
+    "propose_migrations_for_touched_code": true,
+    "discovery_scan_depth": "standard"
+  }
+}

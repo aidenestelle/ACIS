@@ -1,0 +1,66 @@
+{
+  "$schema": "Living map of codebase topology and architectural decisions",
+  "version": "1.1.0",
+  "last_updated": null,
+  "project_type": "greenfield|brownfield",
+  "discovery_completed": false,
+  "topology": {
+    "entry_points": [],
+    "core_modules": [],
+    "shared_utilities": [],
+    "external_integrations": [],
+    "test_directories": [],
+    "architecture_pattern": null,
+    "monorepo_packages": []
+  },
+  "stack_detected": {
+    "languages": [],
+    "frameworks": [],
+    "build_tools": [],
+    "package_manager": null,
+    "testing": [],
+    "ci_cd": null
+  },
+  "components": {},
+  "decisions": [],
+  "conventions": {
+    "naming": {
+      "components": "PascalCase",
+      "utilities": "camelCase",
+      "constants": "SCREAMING_SNAKE_CASE",
+      "types": "PascalCase with .types.ts suffix",
+      "hooks": "camelCase with use prefix"
+    },
+    "file_organization": {
+      "structure_pattern": "feature-based with shared lib",
+      "colocation_rules": [
+        "Component + styles + tests + types in same directory",
+        "Shared types in src/types/",
+        "Utilities in src/lib/"
+      ]
+    },
+    "code_style": {
+      "exports": "named|default|mixed",
+      "component_style": "functional|class|mixed",
+      "async_pattern": "async-await|promises|callbacks|mixed",
+      "error_handling": null,
+      "state_management": null
+    },
+    "patterns": [],
+    "inconsistencies_noted": []
+  },
+  "dependencies": {
+    "critical": [],
+    "version_locked": [],
+    "deprecated_in_use": []
+  },
+  "patterns": {
+    "observed": [],
+    "crystallized_as_skills": []
+  },
+  "migration_state": {
+    "active_migrations": [],
+    "completed_migrations": [],
+    "blocked_migrations": []
+  }
+}

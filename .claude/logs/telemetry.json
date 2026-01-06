@@ -1,0 +1,25 @@
+{
+  "$schema": "ACIS telemetry and usage analytics",
+  "version": "1.0.0",
+  "last_updated": null,
+  "sessions": [],
+  "aggregates": {
+    "total_sessions": 0,
+    "total_tasks_completed": 0,
+    "total_tasks_failed": 0,
+    "mistakes_prevented": 0,
+    "skills_used": {},
+    "agents_invoked": {
+      "planner": 0,
+      "executor": 0,
+      "reviewer": 0
+    },
+    "common_error_categories": {},
+    "average_session_duration_minutes": 0
+  },
+  "insights": {
+    "most_triggered_mistakes": [],
+    "most_used_skills": [],
+    "patterns_ready_to_crystallize": []
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://acis.example.com/schemas/session-context.json",
+  "title": "ACIS Session Context",
+  "description": "Schema for maintaining context between Claude Code sessions",
+  "type": "object",
+  "required": ["$schema", "version"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Schema identifier"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "last_updated": {
+      "type": ["string", "null"],
+      "format": "date-time"
+    },
+    "last_session": {
+      "type": "object",
+      "properties": {
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "summary": {
+          "type": "string",
+          "description": "Brief description of what was accomplished"
+        },
+        "accomplishments": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "decisions_made": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "last_commit": {
+          "type": ["string", "null"],
+          "description": "Git commit hash of last commit"
+        }
+      }
+    },
+    "active_context": {
+      "type": "object",
+      "properties": {
+        "current_feature": {
+          "type": ["string", "null"],
+          "description": "What feature/task is currently being worked on"
+        },
+        "current_branch": {
+          "type": ["string", "null"]
+        },
+        "working_files": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Files currently being modified"
+        },
+        "recent_changes": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Recent changes made"
+        }
+      }
+    },
+    "conversation_threads": {
+      "type": "array",
+      "description": "Active conversation topics",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "topic": { "type": "string" },
+          "status": {
+            "type": "string",
+            "enum": ["active", "paused", "resolved"]
+          },
+          "last_message": { "type": "string" }
+        }
+      }
+    },
+    "pending_tasks": {
+      "type": "array",
+      "description": "Tasks that need to be completed",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "description": { "type": "string" },
+          "priority": {
+            "type": "string",
+            "enum": ["low", "medium", "high"]
+          },
+          "added_date": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    },
+    "open_questions": {
+      "type": "array",
+      "description": "Unresolved questions or decisions",
+      "items": {
+        "type": "object",
+        "properties": {
+          "question": { "type": "string" },
+          "context": { "type": "string" },
+          "options": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "awaiting": { "type": "string" }
+        }
+      }
+    },
+    "blockers": {
+      "type": "array",
+      "description": "Items blocking progress",
+      "items": {
+        "type": "object",
+        "properties": {
+          "description": { "type": "string" },
+          "blocked_tasks": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "resolution_needed": { "type": "string" }
+        }
+      }
+    }
+  }
+}

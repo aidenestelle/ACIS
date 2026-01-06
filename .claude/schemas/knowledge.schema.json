@@ -1,0 +1,191 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://acis.example.com/schemas/knowledge.json",
+  "title": "ACIS Knowledge Database",
+  "description": "Schema for codebase intelligence, topology, and conventions",
+  "type": "object",
+  "required": ["$schema", "version"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Schema identifier"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$"
+    },
+    "last_updated": {
+      "type": ["string", "null"],
+      "format": "date-time"
+    },
+    "project_type": {
+      "type": "string",
+      "enum": ["greenfield", "brownfield"]
+    },
+    "discovery_completed": {
+      "type": "boolean"
+    },
+    "topology": {
+      "type": "object",
+      "properties": {
+        "entry_points": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "core_modules": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "utilities": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "integrations": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "tests": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "architecture_pattern": {
+          "type": "string"
+        },
+        "monorepo_packages": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "stack_detected": {
+      "type": "object",
+      "properties": {
+        "languages": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "frameworks": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "build_tools": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "package_manager": {
+          "type": "string"
+        },
+        "testing": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "ci_cd": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "components": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "path": { "type": "string" },
+          "responsibility": { "type": "string" },
+          "dependencies": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "decisions": {
+      "type": "array",
+      "description": "Architectural Decision Records",
+      "items": {
+        "type": "object",
+        "required": ["id", "date", "decision"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^ADR-\\d{3}$"
+          },
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "decision": { "type": "string" },
+          "context": { "type": "string" },
+          "consequences": { "type": "string" },
+          "status": {
+            "type": "string",
+            "enum": ["proposed", "accepted", "deprecated", "superseded"]
+          }
+        }
+      }
+    },
+    "conventions": {
+      "type": "object",
+      "properties": {
+        "naming": {
+          "type": "object",
+          "properties": {
+            "components": { "type": "string" },
+            "hooks": { "type": "string" },
+            "utilities": { "type": "string" },
+            "types": { "type": "string" },
+            "constants": { "type": "string" }
+          }
+        },
+        "file_organization": {
+          "type": "object",
+          "properties": {
+            "components": { "type": "string" },
+            "tests": { "type": "string" },
+            "types": { "type": "string" }
+          }
+        },
+        "code_style": {
+          "type": "object",
+          "properties": {
+            "imports_order": { "type": "string" },
+            "exports": { "type": "string" },
+            "comments": { "type": "string" }
+          }
+        }
+      }
+    },
+    "patterns": {
+      "type": "object",
+      "properties": {
+        "observed": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Patterns seen but not yet crystallized"
+        },
+        "crystallized_as_skills": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Patterns that have been turned into skills"
+        }
+      }
+    },
+    "migration_state": {
+      "type": "object",
+      "properties": {
+        "active_migrations": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "completed_migrations": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "blocked_migrations": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  }
+}

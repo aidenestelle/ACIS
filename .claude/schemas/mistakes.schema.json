@@ -1,0 +1,138 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://acis.example.com/schemas/mistakes.json",
+  "title": "ACIS Mistakes Database",
+  "description": "Schema for tracking errors, technical debt, and inherited issues",
+  "type": "object",
+  "required": ["$schema", "version", "entries"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Schema identifier"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Schema version (semver)"
+    },
+    "last_updated": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "ISO8601 timestamp of last update"
+    },
+    "entries": {
+      "type": "array",
+      "description": "List of mistake entries",
+      "items": {
+        "type": "object",
+        "required": ["id", "category", "severity", "trigger", "prevention_rule"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^ERR-\\d{3}$",
+            "description": "Unique identifier (ERR-XXX)"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "category": {
+            "type": "string",
+            "enum": ["syntax", "logic", "architecture", "dependency", "convention", "security", "performance"]
+          },
+          "severity": {
+            "type": "string",
+            "enum": ["low", "medium", "high", "critical"]
+          },
+          "trigger": {
+            "type": "string",
+            "minLength": 1,
+            "description": "What action caused this"
+          },
+          "symptom": {
+            "type": "string",
+            "description": "What went wrong"
+          },
+          "root_cause": {
+            "type": "string",
+            "description": "Why it failed"
+          },
+          "resolution": {
+            "type": "string",
+            "description": "How it was fixed"
+          },
+          "prevention_rule": {
+            "type": "string",
+            "minLength": 1,
+            "description": "Actionable prevention rule"
+          },
+          "affected_files": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "tags": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      }
+    },
+    "debt_observations": {
+      "type": "array",
+      "description": "Technical debt found during discovery",
+      "items": {
+        "type": "object",
+        "required": ["id", "description", "impact"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^DEBT-\\d{3}$"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "description": { "type": "string" },
+          "location": { "type": "string" },
+          "impact": {
+            "type": "string",
+            "enum": ["low", "medium", "high"]
+          },
+          "type": {
+            "type": "string",
+            "enum": ["code_smell", "security", "performance", "maintainability", "testing"]
+          },
+          "suggested_action": { "type": "string" },
+          "blocked_by": { "type": ["string", "null"] },
+          "discovered_during": {
+            "type": "string",
+            "enum": ["Discovery", "Modification", "Review"]
+          }
+        }
+      }
+    },
+    "inherited_issues": {
+      "type": "array",
+      "description": "Pre-existing issues not caused by ACIS",
+      "items": {
+        "type": "object",
+        "required": ["id", "description"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^INH-\\d{3}$"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "description": { "type": "string" },
+          "context": { "type": "string" },
+          "workaround": { "type": "string" },
+          "owner": { "type": "string" },
+          "reported_to_user": { "type": "boolean" }
+        }
+      }
+    }
+  }
+}

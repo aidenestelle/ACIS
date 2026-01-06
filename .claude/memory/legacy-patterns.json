@@ -1,0 +1,10 @@
+{
+  "$schema": "Tracks existing patterns to preserve or migrate in brownfield projects",
+  "version": "1.0.0",
+  "last_updated": null,
+  "project_maturity": "new|growing|mature|legacy",
+  "preserve": [],
+  "migrate_when_touched": [],
+  "technical_debt": [],
+  "migration_history": []
+}

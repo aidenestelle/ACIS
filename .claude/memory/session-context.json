@@ -1,0 +1,62 @@
+{
+  "$schema": "Carries context between Claude Code sessions",
+  "version": "1.2.0",
+  "last_updated": "2025-01-05",
+  "last_session": {
+    "summary": "ACIS v1.2.0 optimization: reduced redundancy, added skills, conventions, telemetry",
+    "accomplishments": [
+      "Reduced CLAUDE.md from 579 to 220 lines by extracting conventions",
+      "Created conventions/ directory with typescript.md, react.md, supabase.md, tailwind.md",
+      "Added 4 new skills: git-commit, debug-session, memory-maintenance, pr-review",
+      "Enhanced skill template with parameters, dependencies, and memory updates sections",
+      "Added complexity_definitions and agents config to config.json",
+      "Pre-populated mistakes.json with 10 common React/TypeScript errors",
+      "Created reference/emergency-procedures.md for troubleshooting",
+      "Created schemas/ directory with JSON Schema validation files",
+      "Created logs/telemetry.json for usage tracking",
+      "Fixed type/interface inconsistency in executor.md",
+      "Fixed version mismatch in CLAUDE.md (1.0.0 → 1.2.0)",
+      "Updated agents to reference shared conventions instead of duplicating",
+      "Updated README.md with v1.2.0 changes documentation"
+    ],
+    "decisions_made": [
+      "Extract stack conventions to separate files in conventions/ for better maintainability",
+      "Pre-populate mistakes.json with common errors for immediate error prevention value",
+      "Add complexity_definitions to allow skipping agents for trivial tasks",
+      "Include JSON Schema validation for memory file integrity",
+      "Add telemetry skeleton for future usage analytics"
+    ]
+  },
+  "active_context": {
+    "current_feature": "ACIS v1.2.0 - Optimization Complete",
+    "current_branch": "master",
+    "working_files": [
+      ".claude/CLAUDE.md",
+      ".claude/README.md",
+      ".claude/config.json",
+      ".claude/conventions/typescript.md",
+      ".claude/conventions/react.md",
+      ".claude/conventions/supabase.md",
+      ".claude/conventions/tailwind.md",
+      ".claude/skills/git-commit.md",
+      ".claude/skills/debug-session.md",
+      ".claude/skills/memory-maintenance.md",
+      ".claude/skills/pr-review.md",
+      ".claude/skills/_template.md",
+      ".claude/agents/executor.md",
+      ".claude/agents/reviewer.md",
+      ".claude/memory/mistakes.json",
+      ".claude/reference/emergency-procedures.md",
+      ".claude/schemas/mistakes.schema.json",
+      ".claude/schemas/knowledge.schema.json",
+      ".claude/schemas/session-context.schema.json",
+      ".claude/logs/telemetry.json"
+    ],
+    "relevant_decisions": [],
+    "active_mistakes_to_avoid": []
+  },
+  "conversation_threads": [],
+  "pending_tasks": [],
+  "open_questions": [],
+  "blockers": []
+}
